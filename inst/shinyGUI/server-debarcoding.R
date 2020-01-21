@@ -353,7 +353,7 @@ observe({
 
 output$dwnld_debaFcs <- downloadHandler(
     filename=function() { 
-        paste0(format(Sys.Date(), "%y%m%d"), "-debarcoding.tar")
+        paste0(format(Sys.Date(), "%y%m%d"), "-debarcoding.zip")
     },
     content =function(file) { 
         tmpdir <- tempdir()
@@ -414,13 +414,13 @@ output$dwnld_debaFcs <- downloadHandler(
         showNotification(h4(strong("Writing FCS files...")),
             id="msg", duration=NULL, closeButton=NULL, type="default")
         fileNms <- c(tblNm, smplNms)
-        tar(tarfile=file, files=out_nms) 
+        zip(zipfile=file, files=out_nms) 
         removeNotification(id="msg")
         }, 
-    contentType="application/tar")                        
+    contentType="application/zip")                        
 
 output$dwnld_debaPlots <- downloadHandler(
-    filename=function() { "yield_event_plots.tar" },
+    filename=function() { "yield_event_plots.zip" },
     content =function(file) { 
         tmpdir <- tempdir()
         setwd(tmpdir)
@@ -432,6 +432,6 @@ output$dwnld_debaPlots <- downloadHandler(
             x=dbFrameDeba(), 
             out_path=tmpdir, 
             n_events=250)
-        tar(tarfile=file,
+        zip(zipfile=file,
             files=paste0(c("yield_plot", "event_plot"), ".pdf")) },
-    contentType="application/tar")
+    contentType="application/zip")

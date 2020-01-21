@@ -446,7 +446,7 @@ observeEvent(input$goToComp, {
 # ------------------------------------------------------------------------------
 output$dwnld_normResults <- downloadHandler(
     filename=function()  
-        paste0(format(Sys.Date(), "%y%m%d"), "_normalization.tar"),
+        paste0(format(Sys.Date(), "%y%m%d"), "_normalization.zip"),
     content=function(file) { 
         dir <- tempdir()
         setwd(dir)
@@ -488,8 +488,8 @@ output$dwnld_normResults <- downloadHandler(
                 filename=outNms[2, i]))
             })
         }
-        tar(tarfile=file, 
+        zip(zipfile=file, 
             files=c("beads_before_vs_after.png", outNms)) 
     },
-    contentType="application/tar"
+    contentType="application/zip"
 )
