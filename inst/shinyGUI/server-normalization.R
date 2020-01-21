@@ -488,7 +488,7 @@ output$dwnld_normResults <- downloadHandler(
                 filename=outNms[2, i]))
             })
         }
-        zip(zipfile=file, 
+        zip(zipfile=file, flags="-0", 
             files=c("beads_before_vs_after.png", outNms)) 
     },
     contentType="application/zip"

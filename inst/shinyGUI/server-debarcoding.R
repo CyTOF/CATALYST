@@ -414,7 +414,7 @@ output$dwnld_debaFcs <- downloadHandler(
         showNotification(h4(strong("Writing FCS files...")),
             id="msg", duration=NULL, closeButton=NULL, type="default")
         fileNms <- c(tblNm, smplNms)
-        zip(zipfile=file, files=out_nms) 
+        zip(zipfile=file, flags="-0", files=out_nms) 
         removeNotification(id="msg")
         }, 
     contentType="application/zip")                        
@@ -432,6 +432,6 @@ output$dwnld_debaPlots <- downloadHandler(
             x=dbFrameDeba(), 
             out_path=tmpdir, 
             n_events=250)
-        zip(zipfile=file,
+        zip(zipfile=file, flags="-0", 
             files=paste0(c("yield_plot", "event_plot"), ".pdf")) },
     contentType="application/zip")

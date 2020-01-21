@@ -534,7 +534,7 @@ output$dwnld_comped <- downloadHandler(
         lapply(seq_along(comped), function(i) {
             suppressWarnings(flowCore::write.FCS(comped[[i]], fileNms[i]))
         })
-        zip(zipfile=file, files=fileNms)
+        zip(zipfile=file, flags="-0", files=fileNms)
     },
     contentType="application/zip"
 )
