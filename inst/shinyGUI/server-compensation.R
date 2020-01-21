@@ -524,7 +524,7 @@ outNmsComp <- reactive({
 
 output$dwnld_comped <- downloadHandler(
     filename=function() { 
-        paste0(format(Sys.Date(), "%y%m%d"), "_compensation.tar")
+        paste0(format(Sys.Date(), "%y%m%d"), "_compensation.zip")
     },
     content=function(file) { 
         tmpdir <- tempdir()
@@ -534,9 +534,9 @@ output$dwnld_comped <- downloadHandler(
         lapply(seq_along(comped), function(i) {
             suppressWarnings(flowCore::write.FCS(comped[[i]], fileNms[i]))
         })
-        tar(tarfile=file, files=fileNms)
+        zip(zipfile=file, flags="-0", files=fileNms)
     },
-    contentType="application/tar"
+    contentType="application/zip"
 )
 
 output$dwnld_spillMat <- downloadHandler(
