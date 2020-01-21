@@ -372,7 +372,7 @@ smoothedBeads <- reactive({
     
     p1 <- CATALYST:::plotSmoothed(smoothed, "Smoothed beads")
     p2 <- CATALYST:::plotSmoothed(smoothedNormed, "Smoothed normalized beads")
-    CATALYST:::.arrangeSmoothed(p1, p2, shiny=TRUE)
+    CATALYST:::.arrangeSmoothed(p1=p1, p2=p2, shiny=TRUE) # fix bug "Warning: Error in arrangeGrob: argument "p2" is missing, with no default"
 })
 
 output$plot_smoothedBeads <- renderPlot(grid.arrange(smoothedBeads()))
